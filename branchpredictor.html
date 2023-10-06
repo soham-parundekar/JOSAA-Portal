@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Analytics</title>
+    <link rel="stylesheet" href="branchpredictor.css">
+</head>
+<body>
+  <div class="header">
+        <h1>JEE Analytics</h1>
+        <span class="menu-toggle">☰</span>
+        <ul>
+            <li>Home</li>
+            <li>Charts</li>
+            <li class="active">Branch Predictor</li>
+            <li id="last">Contact</li>
+        </ul>
+  </div>
+  <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+          document.querySelector('.header').classList.toggle('show-menu');
+        });
+        
+        document.querySelector('.header h1').addEventListener('click', function() {
+          window.location.href = 'home.html';
+        });
+        
+        let menuItems = document.querySelectorAll('.header li');
+        
+        menuItems.forEach(function(menuItem) {
+          menuItem.addEventListener('click', function() {
+              window.location.href = menuItem.textContent.toLowerCase().replace(' ', '') + '.html';
+          });
+        });
+  </script>
+
+  <div class="container-year">
+    <div class="dropdown">
+      <div class="dropdown-box">
+        <span class="name">Year :</span>
+        <input type="text" placeholder = "2022" class="selected-option" readonly />
+        <span class="arrow">&#9660;</span>
+      </div>
+      <div class="dropdown-menu">
+        <a href="#" class="selected">2022</a>
+        <a href="#">2021</a>
+        <a href="#">2020</a>
+        <a href="#">2019</a>
+        <a href="#">2018</a>
+        <a href="#">2017</a>
+        <a href="#">2016</a>
+        <!-- Add more options as needed -->
+      </div>
+    </div>
+
+    <div class="radio-group">
+      <span class="name">College : </span>
+      <input type="radio" id="college-iits" name="college" value="IITs" checked>
+      <label for="college-iits">IIT</label>
+      <input type="radio" id="college-nits" name="college" value="NITs">
+      <label for="college-nits">NIT</label>
+    </div>
+  
+    <!-- Quota radio buttons (initially hidden) -->
+    <div class="radio-group quota-group" style="display:none">
+      <span class="name">Quota : </span>
+      <input type="radio" id="quota-home-state" name="quota" value="Home State" checked>
+      <label for="quota-home-state">Home State</label>
+      <input type="radio" id="quota-other-state" name="quota" value="Other State">
+      <label for="quota-other-state">Other State</label>
+    </div>
+  </div>
+  <script>
+    // Select the College radio buttons
+    const collegeRadioButtons = document.querySelectorAll('input[name="college"]');
+
+    // Select the Quota radio group
+    const quotaGroup = document.querySelector('.quota-group');
+
+    // Add an event listener to each College radio button
+    collegeRadioButtons.forEach((button) => {
+      button.addEventListener('change', (event) => {
+        // Show or hide the Quota radio group based on the selected College option
+        if (event.target.value === 'NITs') {
+          quotaGroup.style.display = 'block';
+        } else {
+          quotaGroup.style.display = 'none';
+        }
+      });
+    });
+  </script>
+
+  <div class="container">
+      <div class="dropdown">
+        <div class="dropdown-box">
+          <span class="name">Institute 1 :</span>
+          <input type="text" placeholder = "All" class="selected-option" readonly />
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="dropdown-menu">
+          <a href="#" class="selected">All</a>
+          <a href="#">NIT Arunachal Pradesh</a>
+          <a href="#">Option 2</a>
+          <a href="#">Option 3</a>
+          <a href="#">Option 4</a>
+          <a href="#">Option 5</a>
+          <a href="#">Option 6</a>
+          <a href="#">Option 7</a>
+          <!-- Add more options as needed -->
+        </div>
+      </div>
+  
+      <div class="dropdown">
+        <div class="dropdown-box">
+          <span class="name">Institute 2 :</span>
+          <input type="text" placeholder = "All" class="selected-option" readonly />
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="dropdown-menu">
+          <a href="#" class="selected">All</a>
+          <a href="#">NIT Arunachal Pradesh</a>
+          <a href="#">Option 2</a>
+          <a href="#">Option 3</a>
+          <a href="#">Option 4</a>
+          <a href="#">Option 5</a>
+          <a href="#">Option 6</a>
+          <a href="#">Option 7</a>
+          <!-- Add more options as needed -->
+        </div>
+      </div>
+  
+      <div class="dropdown">
+        <div class="dropdown-box">
+          <span class="name">Institute 3 :</span>
+          <input type="text" placeholder = "All" class="selected-option" readonly />
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="dropdown-menu">
+          <a href="#" class="selected">All</a>
+          <a href="#">NIT Arunachal Pradesh</a>
+          <a href="#">Option 2</a>
+          <a href="#">Option 3</a>
+          <a href="#">Option 4</a>
+          <a href="#">Option 5</a>
+          <a href="#">Option 6</a>
+          <a href="#">Option 7</a>
+          <!-- Add more options as needed -->
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <div class="dropdown-box">
+          <span class="name">Institute 4 :</span>
+          <input type="text" placeholder = "All" class="selected-option" readonly />
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="dropdown-menu">
+          <a href="#" class="selected">All</a>
+          <a href="#">NIT Arunachal Pradesh</a>
+          <a href="#">Option 2</a>
+          <a href="#">Option 3</a>
+          <a href="#">Option 4</a>
+          <a href="#">Option 5</a>
+          <a href="#">Option 6</a>
+          <a href="#">Option 7</a>
+          <!-- Add more options as needed -->
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <div class="dropdown-box">
+          <span class="name">Institute 5 :</span>
+          <input type="text" placeholder = "All" class="selected-option" readonly />
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="dropdown-menu">
+          <a href="#" class="selected">All</a>
+          <a href="#">NIT Arunachal Pradesh</a>
+          <a href="#">Option 2</a>
+          <a href="#">Option 3</a>
+          <a href="#">Option 4</a>
+          <a href="#">Option 5</a>
+          <a href="#">Option 6</a>
+          <a href="#">Option 7</a>
+          <!-- Add more options as needed -->
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <div class="dropdown-box">
+          <span class="name">Institute 6 :</span>
+          <input type="text" placeholder = "All" class="selected-option" readonly />
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="dropdown-menu">
+          <a href="#" class="selected">All</a>
+          <a href="#">NIT Arunachal Pradesh</a>
+          <a href="#">Option 2</a>
+          <a href="#">Option 3</a>
+          <a href="#">Option 4</a>
+          <a href="#">Option 5</a>
+          <a href="#">Option 6</a>
+          <a href="#">Option 7</a>
+          <!-- Add more options as needed -->
+        </div>
+      </div>
+  </div>
+  <script>
+      // Select all dropdown elements
+      const dropdowns = document.querySelectorAll('.dropdown');
+  
+      // Loop over each dropdown element
+      dropdowns.forEach((dropdown) => {
+        // Select the relevant elements for this dropdown
+        const dropdownBox = dropdown.querySelector('.dropdown-box');
+        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+        const dropdownArrow = dropdown.querySelector('.arrow');
+        const selectedOption = dropdown.querySelector('.selected-option');
+  
+        // Add an event listener to each option in the dropdown menu
+        const options = dropdown.querySelectorAll('.dropdown-menu a');
+        options.forEach((option) => {
+          option.addEventListener('click', (event) => {
+            // Update the value of the selected-option element
+            selectedOption.value = event.target.textContent;
+  
+            // Remove the selected class from all options
+            options.forEach((option) => {
+              option.classList.remove('selected');
+            });
+  
+            // Add the selected class to the clicked option
+            event.target.classList.add('selected');
+  
+            // Close the dropdown menu
+            dropdownMenu.classList.remove('show');
+          });
+        });
+  
+        // Add an event listener to the dropdown box
+        [selectedOption, dropdownArrow].forEach((element) => {
+          element.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+          });
+        });
+      });
+  
+      window.addEventListener('click', (event) => {
+        if (!event.target.matches('.selected-option') && !event.target.matches('.arrow')) {
+          const allDropdownMenus = document.querySelectorAll('.dropdown-menu');
+          allDropdownMenus.forEach((menu) => {
+            if (menu.classList.contains('show')) {
+              menu.classList.remove('show');
+            }
+          });
+        }
+      });
+  </script>
+
+  </div>
+
+
+</body>
+</html>

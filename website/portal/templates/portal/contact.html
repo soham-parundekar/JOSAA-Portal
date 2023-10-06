@@ -1,0 +1,487 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictor</title>
+    <link rel="stylesheet" href="{% static 'portal/styles/charts.css' %}">
+
+</head>
+<body>
+    <div class="header">
+        <h1>JEE Analytics</h1>
+        <span class="menu-toggle">☰</span>
+        <ul>
+            <li ><a href="/portal">Home</a></li>
+            <li><a href="/portal/charts">Charts</a></li>
+            <li ><a href="/portal/predict">Branch Predictor</a></li>
+            <li class="active" id="last"><a href="/portal/contact">Contact Us</a></li>
+        </ul>
+    </div>
+    <script>
+      document.querySelector('.menu-toggle').addEventListener('click', function() {
+        document.querySelector('.header').classList.toggle('show-menu');
+      });
+    </script>
+    <!--
+      <section class="hero">
+        <form method = 'GET' action = "{% url 'predict' %}">
+            <div class="container-year">
+                <div class="dropdown">
+                  <div class="dropdown-box">
+                      <label for="category" class="name">Category :</label>
+                      <input type="text" placeholder = "All" class="selected-option" readonly />
+                      <span class="arrow">&#9660;</span>
+                  </div>
+                  <div class="dropdown-menu">
+                          <a href="#" class="selected">All</a>
+                          {% for year in category_values %}
+                          <option value="{{year}}" {% if value == request.GET.category %}selected{% endif %}>{{ year }}</option>
+                          {% endfor %}
+                  </div>
+                  </div>
+                  
+
+                  <div class="dropdown">
+                    <div class="dropdown-box">
+                        <label for="gender" class="name">Gender :</label>
+                        <input type="text" placeholder = "All" class="selected-option" readonly />
+                        <span class="arrow">&#9660;</span>
+                    </div>
+                    <div class="dropdown-menu">
+                            <a href="#" class="selected">All</a>
+                            {% for year in gender_values %}
+                            <option value="{{year}}" {% if value == request.GET.gender %}selected{% endif %}>{{ year }}</option>
+                            {% endfor %}
+                    </div>
+                  </div>
+                    
+
+                  <div class="dropdown">
+                    <div class="dropdown-box">
+                        <label for="institute" class="name">Institute :</label>
+                        <input type="text" placeholder = "All" class="selected-option" readonly />
+                        <span class="arrow">&#9660;</span>
+                    </div>
+                    <div class="dropdown-menu">
+                            <a href="#" class="selected">All</a>
+                            {% for year in institute_values %}
+                            <option value="{{year}}" {% if value == request.GET.institute %}selected{% endif %}>{{ year }}</option>
+                            {% endfor %}
+                    </div>
+                  </div>
+                  <br>
+
+
+                  <div class="dropdown">
+                    <div class="dropdown-box">
+                        <label for="year" class="name">Year :</label>
+                        <input type="text" placeholder = "All" class="selected-option" readonly />
+                        <span class="arrow">&#9660;</span>
+                    </div>
+                    <div class="dropdown-menu">
+                            <a href="#" class="selected">All</a>
+                            {% for year in year_values %}
+                            <option value="{{year}}" {% if value == request.GET.year %}selected{% endif %}>{{ year }}</option>
+                            {% endfor %}
+                    </div>
+                  </div>
+                  <br>
+
+
+                  <div class="dropdown">
+                    <div class="dropdown-box">
+                        <label for="quota" class="name">Quota :</label>
+                        <input type="text" placeholder = "All" class="selected-option" readonly />
+                        <span class="arrow">&#9660;</span>
+                    </div>
+                    <div class="dropdown-menu">
+                      <select id="category" name="category">
+                            <a href="#" class="selected">All</a>
+                            {% for year in quota_values %}
+                            <option value="{{year}}" {% if value == request.GET.quota %}selected{% endif %}>{{ year }}</option>
+                            {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <br>
+
+
+                  <div class="dropdown">
+                    <div class="dropdown-box">
+                        <label for="program" class="name">Program :</label>
+                        <input type="text" placeholder = "All" class="selected-option" readonly />
+                        <span class="arrow">&#9660;</span>
+                    </div>
+                    <div class="dropdown-menu">
+                      <select id="program" name="program">
+                            <a href="#" class="selected">All</a>
+                            {% for year in program_values %}
+                            <option value="{{year}}" {% if value == request.GET.program %}selected{% endif %}>{{ year }}</option>
+                            {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+            </div>
+          <button type="submit">Apply Filters</button> 
+        </form>
+    </section>
+    -->
+    
+    <form method="GET" action="{% url 'contact' %}" style = "margin-top: 150px">
+      <div class="container-year">
+          <div class="dropdown">
+              <label for="category" class="dropdown-box">Category:</label>
+              <select id="category" name="category" class="dropdown-menu">
+                  <option value="">Select</option>
+                  {% for value in category_values %}
+                      <option value="{{ value }}" {% if value == request.GET.category %}selected{% endif %}>{{ value }}</option>
+                  {% endfor %}
+              </select>
+              <br>
+          </div>
+          
+
+          <div class="dropdown">
+              <label for="gender" class="dropdown-box">Gender:</label>
+              <select id="gender" name="gender" class="dropdown-menu">
+                  <option value="">Select</option>
+                  {% for value in gender_values %}
+                      <option value="{{ value }}" {% if value == request.GET.gender %}selected{% endif %}>{{ value }}</option>
+                  {% endfor %}
+              </select>
+              <br>
+          </div>
+          
+
+          <div class="dropdown">
+              <label for="institute" class="dropdown-box">Institute:</label>
+              <select id="institute" name="institute" class="dropdown-menu">
+                  <option value="">Select</option>
+                  {% for value in institute_values %}
+                      <option value="{{ value }}" {% if value == request.GET.institute %}selected{% endif %}>{{ value }}</option>
+                  {% endfor %}
+              </select>
+              <br>
+          </div>
+          
+
+          <div class="dropdown">
+              <label for="program" class="dropdown-box">Program:</label>
+              <select id="program" name="program" class="dropdown-menu">
+                  <option value="">Select</option>
+                  {% for value in program_values %}
+                      <option value="{{ value }}" {% if value == request.GET.program %}selected{% endif %}>{{ value }}</option>
+                  {% endfor %}
+              </select>
+              <br>
+          </div>
+          
+
+          <div class="dropdown">
+              <label for="year" class="dropdown-box">Year:</label>
+              <select id="year" name="year" class="dropdown-menu">
+                  <option value="">Select</option>
+                  {% for value in year_values %}
+                      <option value="{{ value }}" {% if value == request.GET.year %}selected{% endif %}>{{ value }}</option>
+                  {% endfor %}
+              </select>
+              <br>
+          </div>
+          
+
+          <div class="dropdown">
+            <label for="quota" class="dropdown-box"> Quota:</label>
+            <select id="quota" name="quota" class="dropdown-menu">
+                <option value="">Select</option>
+                {% for value in quota_values %}
+                    <option value="{{ value }}" {% if value == request.GET.quota %}selected{% endif %}>{{ value }}</option>
+                {% endfor %}
+            </select>
+            <br>
+          </div>
+
+          <div class="dropdown">
+            <label for="mrank" class="dropdown-box">JEE Mains Rank:</label>
+            <input type="number" id="mrank" name="mrank" class="input-field" pattern="[0-9]+" title="Please enter numbers only" value="{{ request.GET.mrank }}">
+            <br>
+          </div>
+
+          <div class="dropdown">
+            <label for="arank" class="dropdown-box">JEE Advanced Rank:</label>
+            <input type="number" id="arank" name="arank" class="input-field" pattern="[0-9]+" title="Please enter numbers only" value="{{ request.GET.arank }}">
+            <br>
+          </div>
+          
+          <div class="dropdown">
+            <label for="margin" class="dropdown-box">Margin:</label>
+            <input type="number" id="margin" name="margin" class="input-field" pattern="[0-9]+" title="Please enter numbers only" value="{{ request.GET.margin }}">
+            <br>
+          </div>
+          <button type="submit" id="lb">Apply Filters</button>
+      </div>
+  </form>
+
+  <div class="apply">
+    <button id="ab" onclick="getTable()">View</button>
+  </div>
+  
+  
+  <!--
+      <script>
+        // Select all dropdown elements
+        const dropdowns = document.querySelectorAll('.dropdown');
+    
+        // Loop over each dropdown element
+        dropdowns.forEach((dropdown) => {
+          // Select the relevant elements for this dropdown
+          const dropdownBox = dropdown.querySelector('.dropdown-box');
+          const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+          const dropdownArrow = dropdown.querySelector('.arrow');
+          const selectedOption = dropdown.querySelector('.selected-option');
+    
+          // Add an event listener to each option in the dropdown menu
+          const options = dropdown.querySelectorAll('.dropdown-menu a');
+          options.forEach((option) => {
+            option.addEventListener('click', (event) => {
+              // Update the value of the selected-option element
+              selectedOption.value = event.target.textContent;
+    
+              // Remove the selected class from all options
+              options.forEach((option) => {
+                option.classList.remove('selected');
+              });
+    
+              // Add the selected class to the clicked option
+              event.target.classList.add('selected');
+    
+              // Close the dropdown menu
+              dropdownMenu.classList.remove('show');
+            });
+          });
+  
+          const joptions = dropdown.querySelectorAll('.dropdown-menu option');
+          joptions.forEach((joption) => {
+            joption.addEventListener('click', (event) => {
+              // Update the value of the selected-option element
+              selectedOption.value = event.target.textContent;
+    
+              // Remove the selected class from all options
+              joptions.forEach((joption) => {
+                joption.classList.remove('selected');
+              });
+    
+              // Add the selected class to the clicked option
+              event.target.classList.add('selected');
+    
+              // Close the dropdown menu
+              dropdownMenu.classList.remove('show');
+            });
+          });
+    
+          // Add an event listener to the dropdown box
+          [selectedOption, dropdownArrow].forEach((element) => {
+            element.addEventListener('click', () => {
+              dropdownMenu.classList.toggle('show');
+            });
+          });
+        });
+    
+        window.addEventListener('click', (event) => {
+          if (!event.target.matches('.selected-option') && !event.target.matches('.arrow')) {
+            const allDropdownMenus = document.querySelectorAll('.dropdown-menu');
+            allDropdownMenus.forEach((menu) => {
+              if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+              }
+            });
+          }
+        });
+    </script>
+  -->
+    
+    <div class="table-container">
+        <table id="data-table">
+          
+        </table>
+    
+        <script>
+            async  function getTable(){
+            try{
+               const response = await  fetch('{% static 'portal/data/df3.csv' %}');
+               const data = await response.text();
+               console.log(data);
+               
+               const rows = data.split('\n');
+               const table =document.getElementById('data-table');
+               table.style.display = 'table';
+     
+               table.innerHTML = '';
+     
+               rows.forEach(row => {
+                const cells = row.split(',');
+                const tableRow = document.createElement('tr');
+                
+     
+                cells.forEach(cell => {
+                    const tableCell = document.createElement('td');
+                    tableCell.textContent = cell;
+                    tableRow.appendChild(tableCell);
+                });
+     
+                table.appendChild(tableRow);
+               });
+              } catch (error) {
+                console.log(error);
+              }
+            }
+     
+        </script>
+     
+        <div class="pagination">
+          <button id="btn-first" class="pagination-button">&lt;&lt;</button>
+          <button id="btn-prev" class="pagination-button">&lt;</button>
+          <div id="pagination-numbers"></div>
+          <button id="btn-next" class="pagination-button">&gt;</button>
+          <button id="btn-last" class="pagination-button">&gt;&gt;</button>
+        </div>
+      </div>
+
+
+      <script>
+        const table = document.getElementById('data-table');
+        const tbody = table.getElementsByTagName('tbody')[0];
+        const paginationButtons = document.getElementsByClassName('pagination-button');
+        const paginationNumbers = document.getElementById('pagination-numbers');
+        const rowsPerPage = 50;
+        let currentPage = 1;
+     
+        function renderTableRows() {
+          const startIndex = (currentPage - 1) * rowsPerPage;
+          const endIndex = startIndex + rowsPerPage;
+          const rows = data.slice(startIndex, endIndex);
+      
+          // Clear existing rows
+          tbody.innerHTML = '';
+      
+          // Populate table with rows
+          rows.forEach(rowData => {
+              const row = document.createElement('tr');
+              rowData.forEach(cellData => {
+              const cell = document.createElement('td');
+              cell.textContent = cellData;
+              row.appendChild(cell);
+              });
+              tbody.appendChild(row);
+          });
+      
+          // Disable/enable pagination buttons based on current page
+          const maxPages = Math.ceil(data.length / rowsPerPage);
+          paginationButtons[0].disabled = currentPage === 1;
+          paginationButtons[1].disabled = currentPage === 1;
+          paginationButtons[2].disabled = currentPage === maxPages;
+          paginationButtons[3].disabled = currentPage === maxPages;
+      
+          // Render page numbers
+          paginationNumbers.innerHTML = '';
+      
+          // Calculate page numbers to display
+          const pageNumbers = calculatePageNumbers(currentPage, maxPages);
+      
+          // First and previous page buttons
+          if (pageNumbers[0] > 1) {
+              paginationNumbers.appendChild(createPageButton(1));
+              if (pageNumbers[0] > 2) {
+              paginationNumbers.appendChild(createPageButton(pageNumbers[0] - 1, false, '...'));
+              }
+          }
+      
+          // Page numbers
+          pageNumbers.forEach(pageNumber => {
+              paginationNumbers.appendChild(createPageButton(pageNumber, pageNumber === currentPage));
+          });
+      
+          // Next and last page buttons
+          if (pageNumbers[pageNumbers.length - 1] < maxPages) {
+              if (pageNumbers[pageNumbers.length - 1] < maxPages - 1) {
+              paginationNumbers.appendChild(createPageButton(pageNumbers[pageNumbers.length - 1] + 1, false, '...'));
+              }
+              paginationNumbers.appendChild(createPageButton(maxPages));
+          }
+        }
+     
+        function calculatePageNumbers(currentPage, maxPages) {
+          let startPage = Math.max(1, currentPage - 2);
+          let endPage = Math.min(maxPages, currentPage + 2);
+      
+          if (endPage - startPage < 4) {
+              if (startPage === 1) {
+              endPage = Math.min(endPage + (4 - (endPage - startPage)), maxPages);
+              } else if (endPage === maxPages) {
+              startPage = Math.max(startPage - (4 - (endPage - startPage)), 1);
+              }
+          }
+      
+          const pageNumbers = [];
+          for (let i = startPage; i <= endPage; i++) {
+              pageNumbers.push(i);
+          }
+          return pageNumbers;
+        }
+     
+        function createPageButton(pageNumber, isActive = false, text = '') {
+          const button = document.createElement('button');
+          button.classList.add('pagination-button');
+          if (isActive) {
+              button.classList.add('active');
+          }
+          button.textContent = text !== '' ? text : pageNumber;
+          button.addEventListener('click', () => goToPage(pageNumber));
+          return button;
+        }
+     
+        function goToPage(pageNumber) {
+          currentPage = pageNumber;
+          renderTableRows();
+        }
+     
+        function goToFirstPage() {
+          currentPage = 1;
+          renderTableRows();
+        }
+     
+        function goToPreviousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            renderTableRows();
+        }
+        }
+     
+        function goToNextPage() {
+          const maxPages = Math.ceil(data.length / rowsPerPage);
+          if (currentPage < maxPages) {
+              currentPage++;
+              renderTableRows();
+          }
+        }
+     
+        function goToLastPage() {
+          const maxPages = Math.ceil(data.length / rowsPerPage);
+          currentPage = maxPages;
+          renderTableRows();
+        }
+     
+        // Add event listeners to pagination buttons
+        paginationButtons[0].addEventListener('click', goToFirstPage);
+        paginationButtons[1].addEventListener('click', goToPreviousPage);
+        paginationButtons[2].addEventListener('click', goToNextPage);
+        paginationButtons[3].addEventListener('click', goToLastPage);
+     
+        // Render initial table
+        renderTableRows();
+     
+      </script> 
+    
+</body>
+</html>

@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Website</title>
+    <link rel="stylesheet" href="{% static 'portal/styles/home.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <h1>JEE Analytics</h1>
+        <span class="menu-toggle">☰</span>
+        <ul>
+            <li class="active"><a href="/"></a>Home</li>
+            <li><a href="/portal/charts">Charts</a></li>
+            <li ><a href="/portal/predict">Branch Predictor</a></li>
+            <li id="last"><a href="/portal/contact">Contact Us</a></li>
+        </ul>
+    </div>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>JEE Analytics</h1>
+                <p>Some introductory text about your website.</p>
+            </div>
+            <div class="hero-image">
+                <svg xmlns="http://www.w3.org/2000/svg">
+                    <img src="{% static 'portal/images/hero_image.svg' %}" alt="SVG Image">
+                </svg>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="graphs">
+        <div class="section-content">
+            <div class="left-half">
+                <div class="left-left">
+                    <div class="tile">
+                        <img src="images/logo1.png" alt="Tile Image">
+                        <h3>Tile 1</h3>
+                        <p>Description of Tile 1</p>
+                    </div>
+                    <div class="tile">
+                        <img src="images/logo2.png" alt="Tile Image">
+                        <h3>Tile 2</h3>
+                        <p>Description of Tile 2</p>
+                    </div>
+                </div>
+                <div class="left-right">
+                    <div class="tile">
+                        <img src="images/logo3.png" alt="Tile Image">
+                        <h3>Tile 3</h3>
+                        <p>Description of Tile 3</p>
+                    </div>
+                    <div class="tile">
+                        <img src="images/logo4.png" alt="Tile Image">
+                        <h3>Tile 4</h3>
+                        <p>Description of Tile 4</p>
+                    </div>
+                </div>
+            </div>
+            <div class="right-half">
+                <h1>Graphs Section</h1>
+                <p>Some introductory text about your website.</p>
+                <a href="#" class="button">Click Me</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="branch-predictor">
+        <h2>Branch Predictor Section</h2>
+        <!-- Add your branch predictor content here -->
+    </section>
+
+    <section class="contact">
+        <!-- Add your contact form or information here -->
+        <h2>Contact Us</h2>
+        <div class="contact-grid">
+            <div class="contact-tile">
+                <img src="{% static 'portal/images/hari.jpeg' %}" alt="A Shri Hari">
+                <h3>A Shri Hari</h3>
+                <div class="contact-icons">
+                    <a href="https://www.linkedin.com/" target="_blank"><img src="{% static 'portal/images/linkedin-icon.svg' %}" alt="LinkedIn"></a>
+                    <a href="https://github.com/shrihaxori" target="_blank"><img src="{% static 'portal/images/github-icon.svg' %}" alt="GitHub"></a>
+                </div>
+            </div>
+            <div class="contact-tile">
+                <img src="person2.jpg" alt="Person 2">
+                <h3>Aryan Bhushanwar</h3>
+                <div class="contact-icons">
+                    <a href="https://www.linkedin.com/" target="_blank"><img src="{% static 'portal/images/linkedin-icon.svg' %}" alt="LinkedIn"></a>
+                    <a href="https://github.com/b-aryan" target="_blank"><img src="{% static 'portal/images/github-icon.svg' %}"alt="GitHub"></a>
+                </div>
+            </div>
+            <div class="contact-tile">
+                <img src="person3.jpg" alt="Person 3">
+                <h3>Dhairya Aggarwal</h3>
+                <div class="contact-icons">
+                    <a href="https://www.linkedin.com/" target="_blank"><img src="{% static 'portal/images/linkedin-icon.svg' %}" alt="LinkedIn"></a>
+                    <a href="https://github.com/dhairyaaggarwal" target="_blank"><img src="{% static 'portal/images/github-icon.svg' %}"alt="GitHub"></a>
+                </div>
+            </div>
+            <div class="contact-tile">
+                <img src="person4.jpg" alt="Person 4">
+                <h3>Soham Parundekar</h3>
+                <div class="contact-icons">
+                    <a href="https://www.linkedin.com/" target="_blank"><img src="{% static 'portal/images/linkedin-icon.svg' %}" alt="LinkedIn"></a>
+                    <a href="https://github.com/soham-parundekar" target="_blank"><img src="{% static 'portal/images/github-icon.svg' %}" alt="GitHub"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 My Website. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

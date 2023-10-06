@@ -1,0 +1,159 @@
+{% load static %}
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts</title>
+    <link rel="stylesheet" href="{% static 'portal/styles/charts.css' %}">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div class="header">
+        <h1>JEE Analytics</h1>
+        <span class="menu-toggle">☰</span>
+        <ul>
+            <li ><a href="/portal">Home</a></li>
+            <li class="active"><a href="/portal/charts">Charts</a></li>
+            <li ><a href="/portal/predict">Branch Predictor</a></li>
+            <li id="last"><a href="/portal/contact">Contact Us</a></li>
+        </ul>
+    </div>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+          document.querySelector('.header').classList.toggle('show-menu');
+        });
+    </script>
+    
+    <!-- data_template.html -->
+    <form method="GET" action="{% url 'charts' %}" style = "margin-top: 150px">
+        <div class="container-year">
+            <div class="dropdown">
+                <label for="category" class="dropdown-box">Category:</label>
+                <select id="category" name="category" class="dropdown-menu">
+                    <option value="">Select</option>
+                    {% for value in category_values %}
+                        <option value="{{ value }}" {% if value == request.GET.category %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+            </div>
+            
+
+            <div class="dropdown">
+                <label for="gender" class="dropdown-box">Gender:</label>
+                <select id="gender" name="gender" class="dropdown-menu">
+                    <option value="">Select</option>
+                    {% for value in gender_values %}
+                        <option value="{{ value }}" {% if value == request.GET.gender %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+            </div>
+            
+
+            <div class="dropdown">
+                <label for="institute" class="dropdown-box">Institute:</label>
+                <select id="institute" name="institute" class="dropdown-menu">
+                    <option value="">Select</option>
+                    {% for value in institute_values %}
+                        <option value="{{ value }}" {% if value == request.GET.institute %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+            </div>
+            
+
+            <div class="dropdown">
+                <label for="program" class="dropdown-box">Program:</label>
+                <select id="program" name="program" class="dropdown-menu">
+                    <option value="">Select</option>
+                    {% for value in program_values %}
+                        <option value="{{ value }}" {% if value == request.GET.program %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+            </div>
+            
+
+            <div class="dropdown">
+                <label for="year" class="dropdown-box">Year:</label>
+                <select id="year" name="year" class="dropdown-menu">
+                    <option value="">Select</option>
+                    {% for value in year_values %}
+                        <option value="{{ value }}" {% if value == request.GET.year %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+            </div>
+            
+            <button type="submit" id="lb">Apply Filters</button>
+        </div>
+    </form>
+ 
+<table>
+    <!-- Table rendering code -->
+</table>
+ 
+ 
+ 
+ 
+    <!--Charts-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ 
+    <canvas id="myChart" width="200" height="100" style="margin-top: 30px"></canvas>
+ 
+    <script>
+      // Data from: https://data.giss.nasa.gov/gistemp/
+      // Mean from: https://earthobservatory.nasa.gov/world-of-change/DecadalTemp
+ 
+      window.addEventListener('load', setup);
+ 
+      async function setup() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const orcr = await getData();
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: orcr.xlabel,
+            datasets: [
+              {
+                label: 'Opening Rank',
+                data: orcr.ylabel,
+                fill: false,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {}
+        });
+      }
+ 
+      async function getData() {
+        // const response = await fetch('testdata.csv');
+        const response = await fetch('{% static 'portal/data/df26.csv' %}');
+        // console.log(df26)
+        const data = await response.text();
+        console.log(data)
+        const xlabel = [];
+        const ylabel = [];
+        const rows = data.split('\n').slice(1);
+        rows.forEach(row => {
+          const cols = row.split(',');
+          xlabel.push(cols[9]);
+          ylabel.push(parseFloat(cols[8]));
+        });
+        return { xlabel, ylabel };
+      }
+    </script>
+ 
+    
+    
+ 
+ 
+ 
+</body>
+</html>
